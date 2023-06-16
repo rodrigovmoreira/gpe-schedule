@@ -1,0 +1,18 @@
+<po-page-edit
+  [p-breadcrumb]="breadcrumb"
+  (p-cancel)="onCancelClick()"
+  [p-disable-submit]="isFormInvalid"
+  (p-save)="onSaveClick()"
+
+  p-title="Cadastro de períodos" >
+
+  <po-dynamic-form #dynamicForm [p-fields]="formFields"></po-dynamic-form>
+
+</po-page-edit>
+
+<po-loading-overlay
+    *ngIf="isBusy"
+    [p-screen-lock]="true"
+    p-text="Aguarde" >
+</po-loading-overlay>
+

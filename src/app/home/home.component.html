@@ -1,0 +1,28 @@
+<po-page-default p-title="Home" [p-actions]="pageActions" [p-breadcrumb]="breadcrumb">
+  <div class="po-row">
+    <po-widget class="po-md-6 po-lg-4 po-mb-2" p-title="Quantidade de trabalhadores Ativos">
+      <div class="po-font-subtitle po-text-center">{{ cardValues.items[0].workers }}</div>
+      <div class="po-text-center sample-widget-text-subtitle">Quantidade de trabalhadores</div>
+    </po-widget>
+
+    <po-widget class="po-md-6 po-lg-4 po-mb-2" p-title="Data do último cálculo">
+      <div class="po-font-subtitle po-text-center"> {{ this.date | date: 'dd/MM/YYYY' }}</div>
+      <div class="po-text-center sample-widget-text-subtitle">Cálculo automático ativo</div>
+    </po-widget>
+
+    <po-widget class="po-md-6 po-lg-4 po-mb-2" p-title="Website status">
+      <div class="po-font-subtitle po-text-center">{{ cardValues.items[0].status }}</div>
+      <div class="po-text-center sample-widget-text-subtitle">only today</div>
+    </po-widget>
+
+    <po-widget class="po-md-6 po-lg-4 po-mb-2" p-title="Valor total Liquido">
+      <div class="po-font-subtitle po-text-center">{{ cardValues.items[0].total }}</div>
+      <div class="po-text-center sample-widget-text-subtitle">Valor da soma da verba 997</div>
+    </po-widget>
+
+    <po-widget class="po-md-6 po-lg-4 po-mb-2" p-title="Transferências no mês">
+      <div class="po-font-subtitle po-text-center">{{ cardValues.items[0].transf }}</div>
+      <div class="po-text-center sample-widget-text-subtitle">Veja mais</div>
+    </po-widget>
+  </div>
+</po-page-default>

@@ -1,0 +1,63 @@
+#Include 'tlpp-core.th'
+
+Namespace DevGpe.WepGpe008.Services
+
+Using Namespace DevGpe.WepGpe008.Adapters
+
+Class PeriodosService From BaseService
+    Private Data _oPeriodosAdapter
+
+	Public Method New()
+	Public Method GetPage( nCurrentPage As Numeric, nPageSize As Numeric )
+    public Method FindById( cId As Character ) As Json
+EndClass
+
+Method New() CLASS PeriodosService
+	_Super:New()
+return
+
+Method GetPage( nCurrentPage As Numeric, nPageSize As Numeric ) Class PeriodosService
+    Local jResult  := JsonObject():New()
+
+    Default nCurrentPage := 1
+    Default nPageSize := 10
+
+    Self:_oPeriodosAdapter := PeriodosAdapter():New()
+    Self:_oPeriodosAdapter:BuildPage( nCurrentPage, nPageSize )
+
+    If ( Self:_oPeriodosAdapter:lOk )
+        jResult['success'] := .T.
+        jResult['result'] := Self:_oPeriodosAdapter:GetJSONResponse()
+    Else
+        jResult['success'] := .F.
+        jResult['result'] := JsonObject():New(0)
+        jResult['result']['code'] := Self:_oPeriodosAdapter:GetCode()
+        jResult['result']['message'] := "Erro ao consultar unidades de medidas"
+        jResult['result']['detailedMessage'] := Self:_oPeriodosAdapter:GetMessage()
+    EndIf
+Return jResult
+
+Method FindById( cId As Character ) As Json Class PeriodosService
+    Local aArea    := FWGetArea()
+    Local aAreaRCH := RCH->( FWGetArea() )
+    Local jResult  := JsonObject():New()
+
+    jResult['result'] := JsonObject():New()
+
+    DbSelectArea("RCH")
+    DbSetOrder( 1 )
+
+    If ( MsSeek( FWXFilial("RCH")+cId ) )
+        jResult['success'] := .T.
+        jResult['result']["roteir"] := AllTrim( RCH->RCH_ROTEIR )
+        jResult['result']["periodo"] := AllTrim( RCH->RCH_PER )
+    Else
+        jResult['success'] := .F.
+        jResult['result']['code'] := 404
+        jResult['result']['message'] := "Unidade de medida não encontrada"
+        jResult['result']['detailedMessage'] := "A unidade de medida " + cId + " não foi encontrada"
+    EndIf
+
+    FWRestArea( aAreaRCH )
+    FWRestArea( aArea )
+Return jResult

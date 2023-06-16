@@ -1,0 +1,63 @@
+#Include 'tlpp-core.th'
+
+Namespace DevGpe.WepGpe008.Services
+
+Using Namespace DevGpe.WepGpe008.Adapters
+
+Class HomeService From BaseService
+    Private Data _oHomeAdapter
+
+	Public Method New()
+	Public Method GetPage( nCurrentPage As Numeric, nPageSize As Numeric )
+    public Method FindById( cId As Character ) As Json
+EndClass
+
+Method New() CLASS HomeService
+	_Super:New()
+return
+
+Method GetPage( nCurrentPage As Numeric, nPageSize As Numeric ) Class HomeService
+    Local jResult  := JsonObject():New()
+
+    Default nCurrentPage := 1
+    Default nPageSize := 10
+
+    Self:_oHomeAdapter := HomeAdapter():New()
+    Self:_oHomeAdapter:BuildPage( nCurrentPage, nPageSize )
+
+    If ( Self:_oHomeAdapter:lOk )
+        jResult['success'] := .T.
+        jResult['result'] := Self:_oHomeAdapter:GetJSONResponse()
+    Else
+        jResult['success'] := .F.
+        jResult['result'] := JsonObject():New(0)
+        jResult['result']['code'] := Self:_oHomeAdapter:GetCode()
+        jResult['result']['message'] := "Erro ao consultar cards"
+        jResult['result']['detailedMessage'] := Self:_oHomeAdapter:GetMessage()
+    EndIf
+Return jResult
+
+Method FindById( cId As Character ) As Json Class HomeService
+    //Local aArea    := FWGetArea()
+    //Local aAreaRCH := RCH->( FWGetArea() )
+    Local jResult  := JsonObject():New()
+
+    jResult['result'] := JsonObject():New()
+
+    //DbSelectArea("RCH")
+    //DbSetOrder( 1 )
+
+    //If ( MsSeek( FWXFilial("RCH")+cId ) )
+        jResult['success'] := .T.
+        jResult['result']["roteir"] := AllTrim( RCH->RCH_ROTEIR )
+        jResult['result']["periodo"] := AllTrim( RCH->RCH_PER )
+    //Else
+        // jResult['success'] := .F.
+        // jResult['result']['code'] := 404
+        // jResult['result']['message'] := "Cards não encontrado"
+        // jResult['result']['detailedMessage'] := "A Card " + cId + " não foi encontrado"
+    //EndIf
+
+    // FWRestArea( aAreaRCH )
+    // FWRestArea( aArea )
+Return jResult

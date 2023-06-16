@@ -1,0 +1,63 @@
+#Include 'tlpp-core.th'
+
+Namespace DevGpe.WepGpe008.Services
+
+Using Namespace DevGpe.WepGpe008.Adapters
+
+Class ScheduleService From BaseService
+    Private Data _oScheduleAdapter
+
+	Public Method New()
+	Public Method GetPage( nCurrentPage As Numeric, nPageSize As Numeric )
+    public Method FindById( cId As Character ) As Json
+EndClass
+
+Method New() CLASS ScheduleService
+	_Super:New()
+return
+
+Method GetPage( nCurrentPage As Numeric, nPageSize As Numeric ) Class ScheduleService
+    Local jResult  := JsonObject():New()
+
+    Default nCurrentPage := 1
+    Default nPageSize := 10
+
+    Self:_oScheduleAdapter := ScheduleAdapter():New()
+    Self:_oScheduleAdapter:BuildPage( nCurrentPage, nPageSize )
+
+    If ( Self:_oScheduleAdapter:lOk )
+        jResult['success'] := .T.
+        jResult['result'] := Self:_oScheduleAdapter:GetJSONResponse()
+    Else
+        jResult['success'] := .F.
+        jResult['result'] := JsonObject():New(0)
+        jResult['result']['code'] := Self:_oScheduleAdapter:GetCode()
+        jResult['result']['message'] := "Erro ao consultar agendamentos!"
+        jResult['result']['detailedMessage'] := Self:_oScheduleAdapter:GetMessage()
+    EndIf
+Return jResult
+
+Method FindById( cId As Character ) As Json Class ScheduleService
+    Local aArea    := FWGetArea()
+    Local aAreaXX1 := XX1->( FWGetArea() )
+    Local jResult  := JsonObject():New()
+
+    jResult['result'] := JsonObject():New()
+
+    DbSelectArea("XX1")
+    DbSetOrder( 1 )
+
+    If ( MsSeek( cId ) )
+        jResult['success'] := .T.
+        jResult['result']["id"] := AllTrim( XX1->XX1_CODIGO )
+        jResult['result']["routine"] := AllTrim( XX1->XX1_ROTINA )
+    Else
+        jResult['success'] := .F.
+        jResult['result']['code'] := 404
+        jResult['result']['message'] := "Agendamentos não encontrados"
+        jResult['result']['detailedMessage'] := "O Agendamento " + cId + " não foi encontrado"
+    EndIf
+
+    FWRestArea( aAreaXX1 )
+    FWRestArea( aArea )
+Return jResult

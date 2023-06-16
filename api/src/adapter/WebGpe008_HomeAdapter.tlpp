@@ -1,0 +1,45 @@
+#Include 'tlpp-core.th'
+
+Namespace DevGpe.WepGpe008.Adapters
+
+Class HomeAdapter From FWAdapterBaseV2
+	Private Data _cQuery As Character
+
+	Public Method New()
+	Public Method BuildPage( nCurrentPage As Numeric, nPageSize As Numeric )
+	Private Method _ConfigJsonResultSet()
+EndClass
+
+Method New() CLASS HomeAdapter
+	_Super:New( 'GET', .T. )
+
+	Self:_ConfigJsonResultSet()
+return
+
+Method BuildPage( nCurrentPage As Numeric, nPageSize As Numeric ) Class HomeAdapter
+	Default nCurrentPage := 1
+	Default nPageSize := 10
+
+	Self:SetPage( nCurrentPage )
+	Self:SetPageSize( nPageSize )
+	Self:SetQuery( Self:_cQuery )
+	Self:SetWhere( "id_teste <> '' " )
+	Self:SetOrder( "id_teste" )
+
+	If ( Self:Execute() )
+		Self:FillGetResponse()
+	EndIf
+Return
+
+Method _ConfigJsonResultSet() Class HomeAdapter
+	Self:_cQuery := "SELECT #QueryFields# FROM card "
+	Self:_cQuery += "WHERE #QueryWhere# "
+
+  Self:AddMapFields( "id","id_teste",.T., .T., { "id_teste","C",4, 0 } )
+	Self:AddMapFields( "workers","trabalhadores",.T., .T., { "trabalhadores","C", 30, 0 } )
+	Self:AddMapFields( "data","data",.T., .T., { "data","C", 8, 0 } )
+	Self:AddMapFields( "status", "status",.T., .F., { "status","C",30, 0 } )
+	Self:AddMapFields( "total","total",.T., .F., { "total","C",30, 0 } )
+	Self:AddMapFields( "transf","transf",.T., .F., { "transf","C",30, 0 } )
+
+Return
