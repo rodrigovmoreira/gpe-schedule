@@ -1,3 +1,17 @@
-<po-page-default>
-  <po-upload name="upload" p-label="PO Upload" p-url="https://po-sample-api.fly.dev/v1/uploads/addFile"> </po-upload>
+<po-page-default p-title="Cadastro Schedule" [p-breadcrumb]="breadcrumb">
+  <po-container class="po-lg-6">
+    <po-accordion>
+      <po-accordion-item p-label="Seleção de arquivos" class="Accordion">
+        <po-upload name="upload" p-label="Upload de arquivos" p-url="https://po-sample-api.fly.dev/v1/uploads/addFile"> </po-upload>
+      </po-accordion-item>
+    </po-accordion>
+  </po-container>
+  <po-container class="po-lg-6">
+    <po-table
+    [p-columns]="tableColumns" >
+
+    </po-table>
+  </po-container>
+
+
 </po-page-default>

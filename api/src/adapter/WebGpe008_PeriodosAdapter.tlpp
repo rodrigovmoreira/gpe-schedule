@@ -37,15 +37,15 @@ Method _ConfigJsonResultSet() Class PeriodosAdapter
 	Self:_cQuery += "ON RCJ_CODIGO = RCH_PROCES AND RCJ.D_E_L_E_T_ = ''"
 	Self:_cQuery += "WHERE #QueryWhere# "
 
-  Self:AddMapFields( "roteir","RCH_ROTEIR",     .T., .T., { "RCH_ROTEIR",   "C", TamSX3( "RCH_ROTEIR"    )[1], 0 } )
+  Self:AddMapFields( "roteir","RCH_ROTEIR",     .T., .T., { "RCH_ROTEIR","C", TamSX3( "RCH_ROTEIR"    )[1], 0 } )
 	Self:AddMapFields( "periodo","RCH_PER",       .T., .T., { "RCH_PER",   "C", TamSX3( "RCH_PER"    )[1], 0 } )
 	Self:AddMapFields( "description","RCJ_DESCRI",.T., .T., { "RCJ_DESCRI","C", TamSX3( "RCJ_DESCRI" )[1], 0 } )
 	Self:AddMapFields( "numpag", "RCH_NUMPAG",    .T., .F., { "RCH_NUMPAG","C", TamSX3( "RCH_NUMPAG" )[1], 0 } )
 	Self:AddMapFields( "process","RCH_PROCES",    .T., .F., { "RCH_PROCES","C", TamSX3( "RCH_PROCES" )[1], 0 } )
 	Self:AddMapFields( "mes", "RCH_MES",          .T., .F., { "RCH_MES",   "C", TamSX3( "RCH_MES"    )[1], 0 } )
 	Self:AddMapFields( "ano", "RCH_ANO",          .T., .F., { "RCH_ANO",   "C", TamSX3( "RCH_ANO"    )[1], 0 } )
-	Self:AddMapFields( "dataini", "RCH_DTINI",    .T., .F., { "RCH_DTINI", "C", TamSX3( "RCH_DTINI"  )[1], 0 } )
-	Self:AddMapFields( "datafim", "RCH_DTFIM",    .T., .F., { "RCH_DTFIM", "C", TamSX3( "RCH_DTFIM"  )[1], 0 } )
-	Self:AddMapFields( "datapag", "RCH_DTPAGO",   .T., .F., { "RCH_DTPAGO","C", TamSX3( "RCH_DTPAGO" )[1], 0 } )
+	Self:AddMapFields( "dataini", "RCH_DTINI",    .T., .F., { "RCH_DTINI", "D", TamSX3( "RCH_DTINI"  )[1], 0 } )
+	Self:AddMapFields( "datafim", "RCH_DTFIM",    .T., .F., { "RCH_DTFIM", "D", TamSX3( "RCH_DTFIM"  )[1], 0 } )
+	Self:AddMapFields( "datapag", "RCH_DTPAGO",   .T., .F., { "RCH_DTPAGO","D", TamSX3( "RCH_DTPAGO" )[1], 0 } )
 
 Return

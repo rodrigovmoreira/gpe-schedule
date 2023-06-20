@@ -1,4 +1,4 @@
-<po-page-default p-title="Home" [p-actions]="pageActions" [p-breadcrumb]="breadcrumb">
+<po-page-default p-title="Home" [p-breadcrumb]="breadcrumb">
   <div class="po-row">
     <po-widget class="po-md-6 po-lg-4 po-mb-2" p-title="Quantidade de trabalhadores Ativos">
       <div class="po-font-subtitle po-text-center">{{ cardValues.items[0].workers }}</div>
@@ -20,9 +20,18 @@
       <div class="po-text-center sample-widget-text-subtitle">Valor da soma da verba 997</div>
     </po-widget>
 
-    <po-widget class="po-md-6 po-lg-4 po-mb-2" p-title="Transferências no mês">
+    <po-widget class="po-md-6 po-lg-4 po-mb-2" p-title="Transferências no Mês">
       <div class="po-font-subtitle po-text-center">{{ cardValues.items[0].transf }}</div>
       <div class="po-text-center sample-widget-text-subtitle">Veja mais</div>
     </po-widget>
+
+    <po-widget class="po-md-6 po-lg-4 po-mb-2" p-title="Dias Para o Pagamento" p-background=""
+      (p-click)="diasPagamento()">
+      <div class="po-font-subtitle po-text-center">17 days left</div>
+      <div class="po-text-center">Pagamento no quinto dia útil</div>
+    </po-widget>
+
+
+
   </div>
 </po-page-default>

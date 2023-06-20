@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PoBreadcrumb } from '@po-ui/ng-components';
+import { PoBreadcrumb, PoDynamicFormField } from '@po-ui/ng-components';
 import { ScheduleService } from '../shared/services/schedule.service';
 
 @Component({
@@ -9,27 +9,35 @@ import { ScheduleService } from '../shared/services/schedule.service';
 })
 export class ScheduleComponent implements OnInit {
 
-  public blabla : any[] = [];
+  public listaRoteiros: any = ''
 
   public readonly breadcrumb: PoBreadcrumb = {
-    items: [{ label: 'Home', link: '/home' },{ label: 'Schedule', link: 'schedule' }]
+    items: [{ label: 'Home', link: '/home' }, { label: 'Schedule', link: 'schedule' }]
   };
 
+
   // PLEASE ADD THE API URL SERVICE HERE
-  readonly apiService = '/api/v1/periodos/processes';
+  readonly apiService = 'https://schedule.free.mockoapp.net/api/v1';
 
   constructor(
     private ScheduleService: ScheduleService
   ) { }
 
   ngOnInit() {
-    this.getItems()
-   }
+    console.log()
+    //this.getItems()
+  }
 
   getItems() {
-    this.ScheduleService.getSchedule().subscribe((response: any[]) => {
-      this.blabla = response
-      console.log(response,'Teste data')
+    this.ScheduleService.getSchedule().subscribe((res) => {
+      this.listaRoteiros = res
+      console.log(this.listaRoteiros.items[0].roteir, 'Quase lá')
+      console.log(res, 'Teste data')
     })
   }
 }
+
+
+
+
+

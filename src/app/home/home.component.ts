@@ -11,15 +11,11 @@ export class HomeComponent implements OnInit {
 
   public cardValues: any = ''
   public date: any = ''
-
+  paymentLink: string = 'https://www.google.com.br/search?q=dias+para+o+pagamento';
 
   public readonly breadcrumb: PoBreadcrumb = {
     items: [{ label: 'Home', link: '/' }]
   };
-
-  readonly pageActions: Array<PoPageAction> = [
-
-  ];
 
   constructor(
     private HomeService: HomeService
@@ -37,6 +33,10 @@ export class HomeComponent implements OnInit {
       let dataFormatada = `${ano}-${mes}-${dia}`
       this.date = new Date(dataFormatada)
     })
+  }
+
+  diasPagamento() {
+    window.open(this.paymentLink, '_blank');
   }
 
 }

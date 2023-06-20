@@ -10,6 +10,7 @@ import { ScheduleComponent } from './schedule/schedule.component';
 import { HomeComponent } from './home/home.component';
 import { CadastroScheduleComponent } from './cadastro-schedule/cadastro-schedule.component';
 import { CommonModule } from '@angular/common';
+import { FormComponent } from './schedule/form/form.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { CommonModule } from '@angular/common';
     ScheduleComponent,
     HomeComponent,
     CadastroScheduleComponent,
+    FormComponent,
 
   ],
   imports: [
