@@ -1,0 +1,43 @@
+#Include 'tlpp-core.th'
+
+Namespace DevGpe.WepGpe008.Adapters
+
+Class ProcessesAdapter From FWAdapterBaseV2
+	Private Data _cQuery As Character
+
+	Public Method New()
+	Public Method BuildPage( nCurrentPage As Numeric, nPageSize As Numeric )
+	Private Method _ConfigJsonResultSet()
+EndClass
+
+Method New() CLASS ProcessesAdapter
+	_Super:New( 'GET', .T. )
+
+	Self:_ConfigJsonResultSet()
+return
+
+Method BuildPage( nCurrentPage As Numeric, nPageSize As Numeric ) Class ProcessesAdapter
+	Default nCurrentPage := 1
+	Default nPageSize := 10
+
+	Self:SetPage( nCurrentPage )
+	Self:SetPageSize( nPageSize )
+	Self:SetQuery( Self:_cQuery )
+	Self:SetWhere( "RCH.D_E_L_E_T_ = ' ' AND RCH_PERSEL = '1'" )
+	Self:SetOrder( "RCH_ROTEIR" )
+
+	If ( Self:Execute() )
+		Self:FillGetResponse()
+	EndIf
+Return
+
+Method _ConfigJsonResultSet() Class ProcessesAdapter
+	Self:_cQuery := "SELECT #QueryFields# FROM " + RetSqlName( 'RCH' ) + " RCH "
+	Self:_cQuery += "LEFT JOIN " + RetSqlName("RCJ") + " RCJ "
+	Self:_cQuery += "ON RCJ_CODIGO = RCH_PROCES AND RCJ.D_E_L_E_T_ = ''"
+	Self:_cQuery += "WHERE #QueryWhere# "
+
+  Self:AddMapFields( "processID","RCH_ROTEIR",     .T., .T., { "RCH_ROTEIR","C", TamSX3( "RCH_ROTEIR"    )[1], 0 } )
+	Self:AddMapFields( "description","RCJ_DESCRI",.T., .T., { "RCJ_DESCRI","C", TamSX3( "RCJ_DESCRI" )[1], 0 } )
+
+Return

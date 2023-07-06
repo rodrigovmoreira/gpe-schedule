@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { CadastroScheduleComponent } from './cadastro-schedule/cadastro-schedule.component';
 import { CommonModule } from '@angular/common';
 import { FormComponent } from './schedule/form/form.component';
+import { InterceptorModule } from './shared/interceptos/interceptor.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FormComponent } from './schedule/form/form.component';
     HttpClientModule,
     RouterModule.forRoot([]),
     PoTemplatesModule,
-    CommonModule
+    CommonModule,
+    InterceptorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

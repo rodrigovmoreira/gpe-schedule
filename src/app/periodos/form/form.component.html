@@ -3,8 +3,11 @@
   (p-cancel)="onCancelClick()"
   [p-disable-submit]="isFormInvalid"
   (p-save)="onSaveClick()"
+  (p-save-new)="saveNew()"
 
   p-title="Cadastro de períodos" >
+
+
 
   <po-dynamic-form #dynamicForm [p-fields]="formFields"></po-dynamic-form>
 
@@ -15,4 +18,6 @@
     [p-screen-lock]="true"
     p-text="Aguarde" >
 </po-loading-overlay>
+
+
 

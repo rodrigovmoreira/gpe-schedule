@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'periodos', loadChildren: () => import('./periodos/periodos.module').then(m => m.PeriodosModule) },
   { path: 'schedule', component: ScheduleComponent },
-  { path: 'cadastro-schedule', component: CadastroScheduleComponent }
+  { path: 'cadastro-schedule', component: CadastroScheduleComponent },
 ];
 
 @NgModule({

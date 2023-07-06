@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PoBreadcrumb, PoPageAction } from '@po-ui/ng-components';
 import { HomeService } from '../shared/services/home.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -18,8 +19,19 @@ export class HomeComponent implements OnInit {
   };
 
   constructor(
-    private HomeService: HomeService
+    private HomeService: HomeService,
+    private _http: HttpClient
   ) { }
+
+  getTesteAPI() {
+
+    return this._http
+    .get('http://127.0.0.1:8080/rest/api/v1/periodos/processes')
+    .subscribe(data => {
+      console.log(data);
+    });
+
+  }
 
   ngOnInit(): void {
     this.getCardValue()

@@ -37,15 +37,15 @@ Method _ConfigJsonResultSet() Class ScheduleAdapter
   Self:_cQuery += "ON QAA.D_E_L_E_T_ = '' AND QAA_MAT = XX1_USERID "
 	Self:_cQuery += "WHERE #QueryWhere# "
 
-	Self:AddMapFields( "id",         "XX1_CODIGO",.T., .T., { "XX1_CODIGO", "C", TamSX3( "XX1_CODIGO" )[1], 0 } )
-	Self:AddMapFields( "userid",     "XX1_USERID",.T., .T., { "XX1_USERID", "C", TamSX3( "XX1_USERID" )[1], 0 } )
+	Self:AddMapFields( "id",         "XX1_CODIGO",.T., .T., { "XX1_CODIGO", "C", 6, 0 } )
+	Self:AddMapFields( "userid",     "XX1_USERID",.T., .T., { "XX1_USERID", "C", 6, 0 } )
 	Self:AddMapFields( "nameuser",   "QAA_APELID",.T., .T., { "QAA_APELID", "C", TamSX3( "QAA_APELID" )[1], 0 } )
-	Self:AddMapFields( "routine",    "XX1_ROTINA",.T., .T., { "XX1_ROTINA", "C", TamSX3( "XX1_ROTINA" )[1], 0 } )
-	Self:AddMapFields( "date",       "XX1_DATA",  .T., .T., { "XX1_DATA"  , "D", TamSX3( "XX1_DATA"   )[1], 0 } )
-	Self:AddMapFields( "hour",       "XX1_HORA",  .T., .T., { "XX1_HORA"  , "C", TamSX3( "XX1_HORA"   )[1], 0 } )
-	Self:AddMapFields( "environment","XX1_ENV",   .T., .T., { "XX1_ENV"   , "C", TamSX3( "XX1_ENV"    )[1], 0 } )
-	Self:AddMapFields( "status",     "XX1_STATUS",.T., .T., { "XX1_STATUS", "C", TamSX3( "XX1_STATUS" )[1], 0 } )
-	Self:AddMapFields( "module",     "XX1_MODULO",.T., .T., { "XX1_MODULO", "C", TamSX3( "XX1_MODULO" )[1], 0 } )
+	Self:AddMapFields( "routine",    "XX1_ROTINA",.T., .T., { "XX1_ROTINA", "C", 80, 0 } )
+	Self:AddMapFields( "date",       "XX1_DATA",  .T., .T., { "XX1_DATA"  , "D", 8, 0 } )
+	Self:AddMapFields( "hour",       "XX1_HORA",  .T., .T., { "XX1_HORA"  , "C", 5, 0 } )
+	Self:AddMapFields( "environment","XX1_ENV",   .T., .T., { "XX1_ENV"   , "C", 35, 0 } )
+	Self:AddMapFields( "status",     "XX1_STATUS",.T., .T., { "XX1_STATUS", "C", 1, 0 } )
+	Self:AddMapFields( "module",     "XX1_MODULO",.T., .T., { "XX1_MODULO", "C", 8, 0 } )
 	//Self:AddMapFields( "recurrence", "XX1_RECORR",.T., .T., { "XX1_RECORR", "C", TamSX3( "XX1_RECORR" )[1], 0 } )
   //Self:AddMapFields( "description","XX1_DESCR", .T., .F., { "XX1_DESCR" , "C", TamSX3( "XX1_DESCR"  )[1], 0 } )
 Return

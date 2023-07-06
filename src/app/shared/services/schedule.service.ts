@@ -12,7 +12,8 @@ export class ScheduleService {
   ) { }
 
   getSchedule(){
-    return this.http.get<any[]>(`/api/v1/periodos/processes`);
+
+    return this.http.get<any[]>(`/api/v1/processes/processes`);
   }
 
 }

@@ -79,6 +79,10 @@ export class FormComponent implements OnInit {
 
   }
 
+  saveNew(): void {
+
+  }
+
   onCancelClick(): void {
     this.location.back();
   }

@@ -1,4 +1,9 @@
 <po-page-default p-title="Home" [p-breadcrumb]="breadcrumb">
+
+  <po-container class="po-md-6 po-lg-4 po-mb-2" [p-height]="80" >
+    <po-button p-label="Teste Subscribe" (click)="getTesteAPI()"></po-button>
+  </po-container>
+
   <div class="po-row">
     <po-widget class="po-md-6 po-lg-4 po-mb-2" p-title="Quantidade de trabalhadores Ativos">
       <div class="po-font-subtitle po-text-center">{{ cardValues.items[0].workers }}</div>
@@ -25,13 +30,13 @@
       <div class="po-text-center sample-widget-text-subtitle">Veja mais</div>
     </po-widget>
 
-    <po-widget class="po-md-6 po-lg-4 po-mb-2" p-title="Dias Para o Pagamento" p-background=""
+    <po-widget class="po-md-6 po-lg-4 po-mb-2" p-title="Dias Para o Pagamento"
+      p-background="../../assets/image/cash.jpg"
+
       (p-click)="diasPagamento()">
       <div class="po-font-subtitle po-text-center">17 days left</div>
       <div class="po-text-center">Pagamento no quinto dia útil</div>
     </po-widget>
-
-
 
   </div>
 </po-page-default>

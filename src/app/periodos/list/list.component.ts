@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PoBreadcrumb, PoDialogService, PoNotificationService, PoPageAction, PoTableAction, PoTableColumn } from '@po-ui/ng-components';
+import { PoBreadcrumb, PoDialogService, PoNotificationService, PoPageAction, PoSelectOption, PoTableAction, PoTableColumn } from '@po-ui/ng-components';
 import { PeriodosService } from '../periodos.service';
+import { PoPageDynamicSearch, PoPageDynamicSearchFilters } from '@po-ui/ng-templates';
 
 @Component({
   selector: 'app-list',
@@ -12,6 +13,16 @@ export class ListComponent implements OnInit {
 
   public isBusy: boolean = false;
   public tableItems = [];
+  private jobDescriptionOptions: Array<PoSelectOption> = [];
+  private statusOptions: Array<PoSelectOption> = [];
+
+
+  public readonly filters: Array<PoPageDynamicSearchFilters> = [
+    { property: 'hireStatus', label: 'Hire Status', options: this.statusOptions, gridColumns: 6 },
+    { property: 'name', gridColumns: 6 },
+    { property: 'city', gridColumns: 6 },
+    { property: 'job', label: 'Job Description', options: this.jobDescriptionOptions, gridColumns: 6 }
+  ];
 
   public readonly breadcrumb: PoBreadcrumb = {
     items: [
@@ -39,7 +50,6 @@ export class ListComponent implements OnInit {
     { label: 'Dt. Fim', property: 'datafim' },
     { label: 'Dt. Pagto.', property: 'datapag' },
   ]
-
 
   public pageActions: PoPageAction[] = [
     { label: "Períodos", url: "/periodos/create", icon: "po-icon-plus-circle" },

@@ -17,6 +17,9 @@ export class ScheduleComponent implements OnInit {
 
 
   // PLEASE ADD THE API URL SERVICE HERE
+
+  //readonly apiService = this.getItems()
+  //readonly apiService = 'http://localhost:8080/rest/api/v1/processes';
   readonly apiService = 'https://schedule.free.mockoapp.net/api/v1';
 
   constructor(
@@ -24,16 +27,16 @@ export class ScheduleComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log()
-    //this.getItems()
+    console.log(this.apiService, 'API-SERVICE')
+    this.getItems()
   }
 
   getItems() {
     this.ScheduleService.getSchedule().subscribe((res) => {
       this.listaRoteiros = res
-      console.log(this.listaRoteiros.items[0].roteir, 'Quase lá')
+      console.log(this.listaRoteiros.items, 'Quase lá')
       console.log(res, 'Teste data')
-    })
+   })
   }
 }
 

@@ -1,0 +1,63 @@
+#Include 'tlpp-core.th'
+
+Namespace DevGpe.WepGpe008.Services
+
+Using Namespace DevGpe.WepGpe008.Adapters
+
+Class ProcessesService From BaseService
+    Private Data _oProcessesAdapter
+
+	Public Method New()
+	Public Method GetPage( nCurrentPage As Numeric, nPageSize As Numeric )
+    public Method FindById( cId As Character ) As Json
+EndClass
+
+Method New() CLASS ProcessesService
+	_Super:New()
+return
+
+Method GetPage( nCurrentPage As Numeric, nPageSize As Numeric ) Class ProcessesService
+    Local jResult  := JsonObject():New()
+
+    Default nCurrentPage := 1
+    Default nPageSize := 10
+
+    Self:_oProcessesAdapter := ProcessesAdapter():New()
+    Self:_oProcessesAdapter:BuildPage( nCurrentPage, nPageSize )
+
+    If ( Self:_oProcessesAdapter:lOk )
+        jResult['success'] := .T.
+        jResult['result'] := Self:_oProcessesAdapter:GetJSONResponse()
+    Else
+        jResult['success'] := .F.
+        jResult['result'] := JsonObject():New(0)
+        jResult['result']['code'] := Self:_oProcessesAdapter:GetCode()
+        jResult['result']['message'] := "Erro ao consultar cadastro de processos"
+        jResult['result']['detailedMessage'] := Self:_oProcessesAdapter:GetMessage()
+    EndIf
+Return jResult
+
+Method FindById( cId As Character ) As Json Class ProcessesService
+    Local aArea    := FWGetArea()
+    Local aAreaRCH := RCH->( FWGetArea() )
+    Local jResult  := JsonObject():New()
+
+    jResult['result'] := JsonObject():New()
+
+    DbSelectArea("RCH")
+    DbSetOrder( 1 )
+
+    If ( MsSeek( FWXFilial("RCH")+cId ) )
+        jResult['success'] := .T.
+        jResult['result']["roteir"] := AllTrim( RCH->RCH_ROTEIR )
+        jResult['result']["periodo"] := AllTrim( RCH->RCH_PER )
+    Else
+        jResult['success'] := .F.
+        jResult['result']['code'] := 404
+        jResult['result']['message'] := "Cadastro de processo não encontrado"
+        jResult['result']['detailedMessage'] := "A Cadastro de processo " + cId + " não foi encontrado"
+    EndIf
+
+    FWRestArea( aAreaRCH )
+    FWRestArea( aArea )
+Return jResult
