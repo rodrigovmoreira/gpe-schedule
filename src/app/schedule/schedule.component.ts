@@ -15,8 +15,9 @@ export class ScheduleComponent implements OnInit {
     items: [{ label: 'Home', link: '/home' }, { label: 'Schedule', link: 'schedule' }]
   };
 
-  readonly apiService = '/api/v1/processes';
-  //readonly apiService = 'https://schedule.free.mockoapp.net/api/v1';
+  //readonly apiService = '/api/v1/processes';
+
+  readonly apiService = 'https://schedule.free.mockoapp.net/api/v1';
 
   constructor(
     //private ScheduleService: ScheduleService,
