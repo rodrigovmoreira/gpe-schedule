@@ -16,6 +16,37 @@
 			"preLaunchTask": "npm: test",
 			"url": "http://localhost:9876/debug.html",
 			"smartclientBin": "C:\\smartclient\\smartclient.exe"
+		},
+		{
+			"type": "totvs_language_debug",
+			"request": "launch",
+			"name": "Depuração do idioma TOTVS",
+			"program": "${command:AskForProgramName}",
+			"cwb": "${workspaceFolder}",
+			"smartclientBin": "C:\\smartclient\\smartclient.exe",
+			"isMultiSession": true,
+			"enableTableSync": true,
+			"programArguments": [],
+			"enableMultiThread": true,
+			"enableProfile": false,
+			"isAccessibilityMode": false,
+			"doNotShowSplash": false,
+			"openglMode": false,
+			"dpiMode": false,
+			"language": "1",
+			"ignoreFiles": false
 		}
-	]
+	],
+	"lastPrograms": [
+		{
+			"label": "SIGAADV"
+		},
+		{
+			"label": "DevGpe.WepGpe008.Controllers"
+		},
+		{
+			"label": "WebGpe008_ProcessesController"
+		}
+	],
+	"lastProgramExecuted": "WebGpe008_ProcessesController"
 }

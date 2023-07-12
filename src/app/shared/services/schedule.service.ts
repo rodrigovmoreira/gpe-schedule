@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PoLookupResponseApi } from '@po-ui/ng-components';
 
 @Injectable({
   providedIn: 'root'

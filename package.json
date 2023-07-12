@@ -1,6 +1,6 @@
 {
-  "name": "web-gpe-008",
-  "version": "0.0.0",
+  "name": "gpe-schedule",
+  "version": "9.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.js --open",

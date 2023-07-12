@@ -1,9 +1,5 @@
 <po-page-default p-title="Home" [p-breadcrumb]="breadcrumb">
 
-  <po-container class="po-md-6 po-lg-4 po-mb-2" [p-height]="80" >
-    <po-button p-label="Teste Subscribe" (click)="getTesteAPI()"></po-button>
-  </po-container>
-
   <div class="po-row">
     <po-widget class="po-md-6 po-lg-4 po-mb-2" p-title="Quantidade de trabalhadores Ativos">
       <div class="po-font-subtitle po-text-center">{{ cardValues.items[0].workers }}</div>
@@ -15,9 +11,9 @@
       <div class="po-text-center sample-widget-text-subtitle">Cálculo automático ativo</div>
     </po-widget>
 
-    <po-widget class="po-md-6 po-lg-4 po-mb-2" p-title="Website status">
-      <div class="po-font-subtitle po-text-center">{{ cardValues.items[0].status }}</div>
-      <div class="po-text-center sample-widget-text-subtitle">only today</div>
+    <po-widget class="po-md-6 po-lg-4 po-mb-2" p-title="Período Atual">
+      <div class="po-font-subtitle po-text-center">{{ cardValues.items[0].persel }}</div>
+      <div class="po-text-center sample-widget-text-subtitle">Mês Corrente</div>
     </po-widget>
 
     <po-widget class="po-md-6 po-lg-4 po-mb-2" p-title="Valor total Liquido">

@@ -1,4 +1,5 @@
 <po-page-default p-title="Cadastro Schedule" [p-breadcrumb]="breadcrumb">
+
   <po-container class="po-lg-6">
     <po-accordion>
       <po-accordion-item p-label="Seleção de arquivos" class="Accordion">
@@ -6,12 +7,16 @@
       </po-accordion-item>
     </po-accordion>
   </po-container>
+
   <po-container class="po-lg-6">
     <po-table
-    [p-columns]="tableColumns" >
-
+    [p-selectable]="true"
+    p-container="shadow"
+    [p-sort]="true"
+    [p-columns]="tableColumns"
+    [p-actions]="tableActions"
+    [p-items]="tableItems"
+    (p-show-more)="showMore()">
     </po-table>
   </po-container>
-
-
 </po-page-default>

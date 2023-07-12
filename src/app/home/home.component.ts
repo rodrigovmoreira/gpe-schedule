@@ -23,16 +23,6 @@ export class HomeComponent implements OnInit {
     private _http: HttpClient
   ) { }
 
-  getTesteAPI() {
-
-    return this._http
-    .get('http://127.0.0.1:8080/rest/api/v1/periodos/processes')
-    .subscribe(data => {
-      console.log(data);
-    });
-
-  }
-
   ngOnInit(): void {
     this.getCardValue()
   }

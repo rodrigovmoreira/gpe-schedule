@@ -32,13 +32,13 @@ Method BuildPage( nCurrentPage As Numeric, nPageSize As Numeric ) Class HomeAdap
 Return
 
 Method _ConfigJsonResultSet() Class HomeAdapter
-	Self:_cQuery := "SELECT #QueryFields# FROM card "
+	Self:_cQuery := "SELECT #QueryFields# FROM CARDS "
 	Self:_cQuery += "WHERE #QueryWhere# "
 
   Self:AddMapFields( "id","id_teste",.T., .T., { "id_teste","C",4, 0 } )
 	Self:AddMapFields( "workers","trabalhadores",.T., .T., { "trabalhadores","C", 30, 0 } )
 	Self:AddMapFields( "data","data",.T., .T., { "data","C", 8, 0 } )
-	Self:AddMapFields( "status", "status",.T., .F., { "status","C",30, 0 } )
+	Self:AddMapFields( "persel", "persel",.T., .F., { "persel","C",30, 0 } )
 	Self:AddMapFields( "total","total",.T., .F., { "total","C",30, 0 } )
 	Self:AddMapFields( "transf","transf",.T., .F., { "transf","C",30, 0 } )
 
